@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#0B0D12] text-slate-100 font-sans;
+    background-color: #0B0D12;
+    color: #F8FAFC;
+    overflow-x: hidden;
+  }
+
+  /* Custom dark scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0B0D12;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1F2638;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4F8CFF;
+  }
+}
+
+/* Glow effects */
+.blue-glow {
+  box-shadow: 0 0 40px -10px rgba(79, 140, 255, 0.35);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 0%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.electric-gradient-text {
+  background: linear-gradient(135deg, #60A5FA 0%, #4F8CFF 50%, #3B82F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Card hover animation */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(79, 140, 255, 0.4);
+  box-shadow: 0 12px 30px -10px rgba(79, 140, 255, 0.15);
+}
+
+/* Ambient glow container */
+.ambient-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(100px);
+  pointer-events: none;
+  opacity: 0.15;
+}
