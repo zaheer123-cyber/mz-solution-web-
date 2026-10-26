@@ -104,11 +104,6 @@ export const AdminLoginPage = () => {
           </div>
         </form>
 
-        <div className="mt-8 pt-6 border-t border-[#1F2638] text-center">
-          <p className="text-[11px] text-slate-500">
-            Initial Seed Admin: <code className="text-slate-300">admin@mzsolution.com</code> / <code className="text-slate-300">Admin@123456</code>
-          </p>
-        </div>
       </div>
     </div>
   );
