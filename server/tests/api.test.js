@@ -49,15 +49,31 @@ const runTests = async () => {
   let failed = 0;
 
   try {
-    // Test 1: Health check
-    console.log('Test 1: GET /api/health');
+    // Test 1: Root endpoint
+    console.log('Test 1: GET /');
+    const rootRes = await makeRequest({
+      hostname: 'localhost',
+      port,
+      path: '/',
+      method: 'GET'
+    });
+    if (rootRes.statusCode === 200 && rootRes.body.success && rootRes.body.message === 'MzSolution API is running') {
+      console.log('  ✅ Root endpoint passed.');
+      passed++;
+    } else {
+      console.error('  ❌ Root endpoint failed:', rootRes);
+      failed++;
+    }
+
+    // Test 2: Health check
+    console.log('Test 2: GET /api/health');
     const healthRes = await makeRequest({
       hostname: 'localhost',
       port,
       path: '/api/health',
       method: 'GET'
     });
-    if (healthRes.statusCode === 200 && healthRes.body.status === 'online') {
+    if (healthRes.statusCode === 200 && healthRes.body.success && healthRes.body.message === 'API healthy' && healthRes.body.status === 'online') {
       console.log('  ✅ Health check passed.');
       passed++;
     } else {
@@ -65,8 +81,8 @@ const runTests = async () => {
       failed++;
     }
 
-    // Test 2: Public services
-    console.log('Test 2: GET /api/services');
+    // Test 3: Public services
+    console.log('Test 3: GET /api/services');
     const servicesRes = await makeRequest({
       hostname: 'localhost',
       port,
@@ -81,8 +97,8 @@ const runTests = async () => {
       failed++;
     }
 
-    // Test 3: Public projects
-    console.log('Test 3: GET /api/projects');
+    // Test 4: Public projects
+    console.log('Test 4: GET /api/projects');
     const projectsRes = await makeRequest({
       hostname: 'localhost',
       port,
@@ -97,8 +113,8 @@ const runTests = async () => {
       failed++;
     }
 
-    // Test 4: Protected route without auth should return 401
-    console.log('Test 4: GET /api/analytics/overview (without token)');
+    // Test 5: Protected route without auth should return 401
+    console.log('Test 5: GET /api/analytics/overview (without token)');
     const unauthRes = await makeRequest({
       hostname: 'localhost',
       port,
@@ -113,8 +129,8 @@ const runTests = async () => {
       failed++;
     }
 
-    // Test 5: Post contact inquiry
-    console.log('Test 5: POST /api/inquiries');
+    // Test 6: Post contact inquiry
+    console.log('Test 6: POST /api/inquiries');
     const inquiryRes = await makeRequest({
       hostname: 'localhost',
       port,

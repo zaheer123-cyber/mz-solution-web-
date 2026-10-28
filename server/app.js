@@ -69,9 +69,18 @@ app.use(cookieParser(cookieSecret));
 // Serve uploaded static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'MzSolution API is running'
+  });
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.status(200).json({
+    success: true,
+    message: 'API healthy',
     status: 'online',
     timestamp: new Date().toISOString(),
     service: 'MzSolution API'
